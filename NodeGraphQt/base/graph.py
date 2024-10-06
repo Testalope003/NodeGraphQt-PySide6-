@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 
 from Qt import QtCore, QtWidgets
+from Qt.QtGui import QCursor
 
 from NodeGraphQt.base.commands import (NodeAddedCmd,
                                        NodesRemovedCmd,
@@ -563,7 +564,8 @@ class NodeGraph(QtCore.QObject):
         """
         toggle the node search widget visibility.
         """
-        if self._viewer.underMouse():
+        mouse_pos = self._viewer.mapFromGlobal(QCursor.pos())
+        if self._viewer.geometry().contains(mouse_pos):
             self._viewer.tab_search_set_nodes(self._node_factory.names)
             self._viewer.tab_search_toggle()
 
