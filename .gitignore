@@ -1,6 +1,7 @@
 # virtual enviroment
 env/*
 venv/*
+.conda/*
 
 # sphinx documentation
 docs/_build/

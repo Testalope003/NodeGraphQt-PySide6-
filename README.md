@@ -14,6 +14,8 @@
 NodeGraphQt is a node graph UI framework for `PySide2` that can be implemented and re-purposed into 
 applications.
 
+> This fork/branch makes minor compatability changes for Qt.py v1.4.1 and Pyside6 v6.7.3.
+
 <img src="https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/main/docs/_images/screenshot.png" width="100%" title="NodeGraphQt">
 
 ## Install
