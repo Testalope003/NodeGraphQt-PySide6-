@@ -183,6 +183,7 @@ class NodeViewer(QtWidgets.QGraphicsView):
         # workaround fix: Clear the QMenuBar so the QAction shotcuts don't
         #                 conflict with existing parent host app.
         self._ctx_menu_bar.clear()
+        self.clear_key_state()
         return super(NodeViewer, self).focusOutEvent(event)
 
     # --- private ---
