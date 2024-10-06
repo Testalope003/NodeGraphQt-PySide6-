@@ -9,6 +9,7 @@ docs/_build/
 # python stuff
 *.pyc
 *.idea
+.vscode/*
 
 # windows/osx stuff
 *.db
