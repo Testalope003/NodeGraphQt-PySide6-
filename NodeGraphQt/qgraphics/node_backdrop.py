@@ -139,7 +139,7 @@ class BackdropNodeItem(AbstractNodeItem):
             item = self.scene().items(rect)[0]
 
             if isinstance(item, (PortItem, PipeItem)):
-                self.setFlag(self.ItemIsMovable, False)
+                self.setFlag(self.GraphicsItemFlag.ItemIsMovable, False)
                 return
             if self.selected:
                 return
@@ -152,7 +152,7 @@ class BackdropNodeItem(AbstractNodeItem):
 
     def mouseReleaseEvent(self, event):
         super(BackdropNodeItem, self).mouseReleaseEvent(event)
-        self.setFlag(self.ItemIsMovable, True)
+        self.setFlag(self.GraphicsItemFlag.ItemIsMovable, True)
         [n.setSelected(True) for n in self._nodes]
         self._nodes = [self]
 
