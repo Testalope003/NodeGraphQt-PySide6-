@@ -1638,6 +1638,9 @@ class NodeViewer(QtWidgets.QGraphicsView):
         self.CTRL_state = False
         self.SHIFT_state = False
         self.ALT_state = False
+        
+        self._cursor_text.setPlainText('')
+        self._cursor_text.setVisible(False)
 
     def use_OpenGL(self):
         """
