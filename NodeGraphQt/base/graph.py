@@ -1906,6 +1906,27 @@ class NodeGraph(QtCore.QObject):
         if clear_undo_stack:
             self._undo_stack.clear()
 
+    def json_encode_default(self,obj):
+        """
+        Handle unsupported JSON encodings. `default` function for JSON dump.
+
+        See Also:
+            :meth:`NodeGraph.save_session`,
+            :meth:`NodeGraph.copy_nodes`,
+
+        Args:
+            obj (object): object being encoded with unsupported type.
+
+        Returns
+            object: `obj` converted to JSON supported type. 
+        """
+        if isinstance(obj, set):
+            return list(obj)
+        elif isinstance(obj, Path):
+            return str(obj)
+        else:
+            raise TypeError(f"Object of type {obj.__class__.__name__} is not JSON-encodable")
+
     def save_session(self, file_path):
         """
         Saves the current node graph session layout to a `JSON` formatted file.
@@ -1921,18 +1942,13 @@ class NodeGraph(QtCore.QObject):
         serialized_data = self.serialize_session()
         file_path = file_path.strip()
 
-        def default(obj):
-            if isinstance(obj, set):
-                return list(obj)
-            return obj
-
         with open(file_path, 'w') as file_out:
             json.dump(
                 serialized_data,
                 file_out,
                 indent=2,
                 separators=(',', ':'),
-                default=default
+                default=self.json_encode_default
             )
 
         # update the current session.
@@ -1999,12 +2015,13 @@ class NodeGraph(QtCore.QObject):
             nodes (list[NodeGraphQt.BaseNode]):
                 list of nodes (default: selected nodes).
         """
+
         nodes = nodes or self.selected_nodes()
         if not nodes:
             return False
         clipboard = QtWidgets.QApplication.clipboard()
         serial_data = self._serialize(nodes)
-        serial_str = json.dumps(serial_data)
+        serial_str = json.dumps(serial_data, default=self.json_encode_default)
         if serial_str:
             clipboard.setText(serial_str)
             return True
