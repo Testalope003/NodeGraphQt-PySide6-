@@ -128,7 +128,7 @@ def main():
     nodes_tree.set_category_label('nodes.widget', 'Widget Nodes')
     nodes_tree.set_category_label('nodes.basic', 'Basic Nodes')
     nodes_tree.set_category_label('nodes.group', 'Group Nodes')
-    # nodes_tree.show()
+    # nodes_tree.show()			### Uncomment to show!
 
     # create a node palette widget.
     nodes_palette = NodesPaletteWidget(node_graph=graph)
@@ -137,7 +137,7 @@ def main():
     nodes_palette.set_category_label('nodes.widget', 'Widget Nodes')
     nodes_palette.set_category_label('nodes.basic', 'Basic Nodes')
     nodes_palette.set_category_label('nodes.group', 'Group Nodes')
-    # nodes_palette.show()
+    # nodes_palette.show()		### Uncomment to show!
 
     app.exec()
 
