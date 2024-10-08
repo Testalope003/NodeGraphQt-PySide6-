@@ -2230,8 +2230,6 @@ class NodeGraph(QtCore.QObject):
             start_nodes (list[NodeGraphQt.BaseNode]):
                 list of nodes to start the auto layout from (Optional).
         """
-        self.begin_undo('Auto Layout Nodes')
-
         nodes = nodes or self.all_nodes()
 
         # filter out the backdrops.
@@ -2254,6 +2252,8 @@ class NodeGraph(QtCore.QObject):
 
         if not start_nodes:
             return
+        
+        self.begin_undo('Auto Layout Nodes')
 
         node_views = [n.view for n in nodes]
         nodes_center_0 = self.viewer().nodes_rect_center(node_views)
